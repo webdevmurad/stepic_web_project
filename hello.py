@@ -1,5 +1,5 @@
 # WSGI
-def application(environ, start_response)
+def application(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/plain')])
     queryString = environ['QUERY_STRING'].split('&')
     responseBody = ''
