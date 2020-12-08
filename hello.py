@@ -1,7 +1,8 @@
 # WSGI
-
-def app(env, start_response)
-    data = ''
-    data = [bytes(i + '\n', 'ascii') for i in environ['QUERY_STRING'].split('&')]
+def application(environ, start_response)
     start_response('200 OK', [('Content-Type', 'text/plain')])
-    return data
+    queryString = environ['QUERY_STRING'].split('&')
+    responseBody = ''
+    for i in queryString: 
+        responseBody += i + '\n'
+    return responseBody
