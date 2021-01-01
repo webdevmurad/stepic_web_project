@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Question(models.Model):
+    objects = QuestionManager() 
     title = models.CharField(default="", max_length=1024)
     text = models.TextField(default="")
     added_at = models.DateField(null=True)
@@ -14,6 +15,14 @@ class Question(models.Model):
 
     def get_url(self):
         return "/question/{}/".format(self.id)
+
+
+class QuestionManager(models.Manager):                                          
+    def new(self):
+        return self.order_by('-added_at')
+
+    def popular(self):
+        return self.order_by('-rating')
 
 
 class Answer(models.Model):
