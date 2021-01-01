@@ -20,7 +20,6 @@ class Question(models.Model):
 class QuestionManager(models.Manager):                                          
     def new(self):
         return self.order_by('-added_at')
-
     def popular(self):
         return self.order_by('-rating')
 
